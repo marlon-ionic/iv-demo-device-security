@@ -1,0 +1,7 @@
+{
+  "name": "iv-demo-device-security",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
