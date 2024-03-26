@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Blank </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,8 +11,46 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list>
+    <ion-item>
+      <ion-input
+        label="Enter the &ldquo;session&rdquo; data"
+        label-placement="floating"
+        [(ngModel)]="state.session"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <div style="flex: auto">
+        <ion-button expand="block" (click)="lockVault()">Lock Vault</ion-button>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div style="flex: auto">
+        <ion-button expand="block" (click)="unlockVault()">Unlock Vault</ion-button>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div style="flex: auto">
+        <ion-button expand="block" (click)="setSession(state.session)"> Set Session Data </ion-button>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div style="flex: auto">
+        <ion-button expand="block" (click)="restoreSession()"> Restore Session Data </ion-button>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <div>Session Data: {{ state.session }}</div>
+        <div>Vault is locked: {{ state.isLocked }}</div>
+      </ion-label>
+    </ion-item>
+
+
+  </ion-list>
 </ion-content>
