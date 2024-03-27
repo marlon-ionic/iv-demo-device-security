@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { fingerPrint } from 'ionicons/icons';
 import {
   IonButton,
   IonContent,
+  IonFab,
+  IonFabButton,
   IonHeader,
+  IonIcon,
   IonInput,
   IonItem, IonItemDivider,
   IonLabel,
@@ -15,6 +19,7 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import { VaultService, VaultServiceState } from '../vault.service';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-home',
@@ -22,13 +27,15 @@ import { VaultService, VaultServiceState } from '../vault.service';
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
-    IonItemDivider, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonInput, FormsModule, ReactiveFormsModule, IonButton, IonLabel, IonItem,IonListHeader, IonRadioGroup, IonRadio
+    IonItemDivider, IonHeader, IonToolbar, IonTitle, IonContent,IonFab, IonIcon,
+    IonFabButton, IonList, IonInput, FormsModule, ReactiveFormsModule, IonButton, IonLabel, IonItem,IonListHeader, IonRadioGroup, IonRadio
   ],
 })
 export class HomePage {
   public state: VaultServiceState;
 
   constructor(private vaultService: VaultService) {
+    addIcons({fingerPrint})
     this.state = vaultService.state;
   }
 
@@ -53,6 +60,10 @@ export class HomePage {
 
   async clearVault() {
     await this.vaultService.clearVault();
+  }
+
+  async biometricPrompt() {
+    await this.vaultService.showBiometricPrompt();
   }
 
 }
