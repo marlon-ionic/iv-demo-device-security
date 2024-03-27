@@ -24,7 +24,7 @@
         <ion-button expand="block" (click)="unlockVault()">Unlock Vault</ion-button>
       </div>
     </ion-item>
-
+    <ion-item-divider></ion-item-divider>
     <ion-item>
       <ion-input
         label="Enter the &ldquo;session&rdquo; data"
@@ -44,6 +44,38 @@
         <ion-button expand="block" (click)="restoreSession()"> Restore Session Data </ion-button>
       </div>
     </ion-item>
+    <ion-item-divider></ion-item-divider>
+
+    <ion-item>
+      <ion-radio-group [(ngModel)]="state.lockType" (ionChange)="setLockType()">
+        <ion-list-header>
+          <ion-label> Vault Locking Mechanism </ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-radio value="NoLocking">Cannot Lock</ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-radio [disabled]="!state.canUseBiometrics" value="Biometrics">Use Biometrics</ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-radio [disabled]="!state.canUsePasscode" value="SystemPasscode">Use System Passcode</ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-radio [disabled]="!state.canUsePasscode && !state.canUseBiometrics" value="Both">Use Both (Device will choose)</ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-item>
+    <ion-item-divider></ion-item-divider>
+    <ion-item>
+      <div style="flex: auto">
+        <ion-button expand="block" color="danger" (click)="clearVault()"> Clear Vault </ion-button>
+      </div>
+    </ion-item>
 
     <ion-item>
       <ion-label>
@@ -51,6 +83,8 @@
         <div>Vault is locked: {{ state.isLocked }}</div>
       </ion-label>
     </ion-item>
+
+
 
 
   </ion-list>
